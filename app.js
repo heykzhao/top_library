@@ -16,7 +16,6 @@ function Book(title, author, read, rating, comment) {
     this.comment = comment; 
 };
 
-
 function addBooktoLibrary(book) {
     if ((myLibrary.some(e => (e.title == book.title) && (e.author == book.author)))) {
         alert('It looks like this book is already in your library!');
@@ -24,3 +23,7 @@ function addBooktoLibrary(book) {
         myLibrary.push(book);
     }
 };
+
+function displayLibrary() {
+    
+}
