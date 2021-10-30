@@ -43,6 +43,10 @@ table {
 	border-spacing: 0;
 }
 /** Reset CSS End **/
+body {
+    height: 100vh;
+}
+
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Safari */
@@ -53,10 +57,120 @@ table {
                                     supported by Chrome, Edge, Opera and Firefox */
 }
 .header-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: lavender;
-    font-size: 40px;
     padding: 20px;
+}
+.title {
+    font-size: 40px;
     font-family: Satisfy, Arial, Helvetica, sans-serif;
+}
+.new-book-button {
+    cursor: pointer;
+    border: none;
+    background-color: rgb(250, 199, 199);
+    color: rgb(175, 104, 104);
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.new-book-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); 
+    opacity: 95%;
+}
+.modal-form {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 600px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.modal-header {
+    padding: 2px 16px;
+    background-color: lavender;
+    color: black;
+    font-size: 28px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Satisfy, Arial, Helvetica, sans-serif;
+}
+.modal-close-button {
+    cursor: pointer;
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.modal-close-button:hover,
+.modal-close-button:focus {
+  color: gray;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-body {
+    padding: 10px 20px;
+}
+.new-book-form {
+    display: flex;
+    flex-direction: column;
+}
+.form-item {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 10px 0px;
+}
+.form-prompt-text {
+    font-family: "Fugaz One", Arial, Helvetica, sans-serif;
+    padding-right: 20px;
+    font-size: 20px;
+}
+.form-prompt-text2 {
+    font-family: "Fugaz One", Arial, Helvetica, sans-serif;
+    padding-left: 5px;
+    font-size: 15px;
+}
+input[type=text] {
+    width: 100%;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 5px solid lavender;
+}
+input[type=text]:focus {
+    background-color: lavender;
+}
+input[type=checkbox] {
+    cursor: pointer;
+    background-color: lavender;
+    height: 20px;
+    width: 20px;
+}
+.submit-item {
+    display: flex;
+    justify-content: center;
+}
+.submit-button {
+    background-color: lavender;
+    border-style: none;
+    font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    width: 90%;
 }
 .library {
     display: flex;
@@ -96,15 +210,12 @@ table {
 }
 .bottom-of-card {
     display: flex;
+    position: relative;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
     width: 90%;
     height: 10%;
     padding-top: 5px;
-}
-.ratings {
-
 }
 .rating-star {
     cursor: pointer;
@@ -118,6 +229,8 @@ table {
     color: #868686b2;
 }
 .extra-options {
+    position: absolute;
+    right: 0px;
     cursor: pointer;
     font-size: 20px;
     padding-right: 10px;
@@ -141,4 +254,40 @@ table {
 .read {
     background-color: green;
     color: rgb(0, 49, 0);
+}
+.footer {
+    position: sticky;
+    bottom: 0px;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+}
+.nameplate {
+    display: flex;
+    background-color: white;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-color: black;
+    border-radius: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.copyright {
+    display: inline-block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+.github-logo {
+    display: inline-block;
+    margin-left: 10px;
+    height: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-form {
+        width: 90%;
+    }
 }

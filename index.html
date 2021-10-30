@@ -12,59 +12,45 @@
 </head>
 <body>
     <div class="header-bar noselect">
-        <h1>My Book List</h1>
+        <h1 class="title">My Book List</h1>
+        <button class="new-book-button">+</button>
+        <div class="new-book-modal">
+            <div class="modal-form">
+                <div class="modal-header">Add a new book
+                    <span class="modal-close-button">x</span>
+                </div>
+                <div class="modal-body">
+                    <form class="new-book-form">
+                        <div class="form-item">
+                            <label for="bookTitle" class="form-prompt-text">Title: </label>
+                            <input type="text" id="bookTitle" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="bookAuthor" class="form-prompt-text">Author: </label>
+                            <input type="text" id="bookAuthor" required>
+                        </div>
+                        <div class="form-item">
+                            <label for="bookRead"  class="form-prompt-text">Read? </label>
+                            <input type="checkbox" id="bookRead">
+                            <label for="bookRead"  class="form-prompt-text2">Yes!</label>
+                        </div>
+                        <div class="form-item submit-item">
+                            <input type="submit" class="submit-button" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="library">
-        <div class="book-card">
-            <div class="book">
-                <div class="read-not-read noselect">✓</div>
-                <p class='book-title'>Test</p>
-                <p class='book-author'>Test</p>
-            </div>
-            <div class="bottom-of-card">
-                <div class="ratings noselect">
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                </div>          
-                <div class="extra-options noselect">• • •</div>
-            </div>
         </div>
-        <div class="book-card">
-            <div class="book">
-                <div class="read-not-read noselect">✓</div>
-                <p class='book-title'>Test</p>
-                <p class='book-author'>Test</p>
-            </div>
-            <div class="bottom-of-card">
-                <div class="ratings noselect">
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                </div>          
-                <div class="extra-options noselect">• • •</div>
-            </div>
-        </div>
-        <div class="book-card">
-            <div class="book">
-                <div class="read-not-read noselect read">✓</div>
-                <p class='book-title'>Test</p>
-                <p class='book-author'>Test</p>
-            </div>
-            <div class="bottom-of-card">
-                <div class="ratings noselect">
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                    <i class="rating-star inactive-star noselect">★</i>
-                </div>          
-                <div class="extra-options noselect">• • •</div>
-            </div>
+    </div>
+    <div class='footer'>
+        <div class='nameplate'>
+            <span class='copyright'>Copyright © 2021 <a href='https://github.com/heykzhao' target='_blank'>heykzhao</a></span>
+            <span>
+                <a href='https://github.com/heykzhao' target='_blank'><img src='images/GitHub-Mark-32px.png' class='github-logo'></a>
+            </span>
         </div>
     </div>
     <script src="app.js"></script>
