@@ -76,6 +76,8 @@ body {
     font-size: 25px;
     height: 40px;
     width: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
     border-radius: 50%;
 }
 .new-book-modal {
