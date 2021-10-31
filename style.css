@@ -232,7 +232,7 @@ input[type=checkbox] {
     position: absolute;
     right: 0px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 25px;
     padding-right: 10px;
 }
 .read-not-read {
