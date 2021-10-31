@@ -1,33 +1,54 @@
+let test = new Book('test','test',true,null,null);
+let test2 = new Book('tesst','test',false,null,null);
+
 // let myLibrary = [];
-let myLibrary = [];
+let myLibrary = [test,test2];
+let readNotReadButton = document.querySelectorAll('.read-not-read');
 
 function Book(title, author, read, rating, comment) {
     this.title = title;
     this.author = author;
     this.read = read;
     this.rating = rating;
-    this.comment = comment; 
 };
 
-function addBooktoLibrary(book) {
-    if ((myLibrary.some(e => (e.title == book.title) && (e.author == book.author)))) {
-        alert('It looks like this book is already in your library!');
+const newBookForm = document.querySelector('.new-book-form');
+const newBookSubmitButton = document.querySelector('.submit-button');
+newBookSubmitButton.addEventListener('click', addBookFromSubmitButton)
+function addBookFromSubmitButton(e) {
+    e.preventDefault();
+    const bookTitle = document.getElementById('bookTitle').value;
+    const bookAuthor = document.getElementById('bookAuthor').value;
+    const bookRead = document.getElementById('bookRead').checked;
+    let newBook = new Book(bookTitle,bookAuthor,bookRead,null,null);
+
+    if ((bookTitle == '') || (bookAuthor == '')) {
+        alert('You must have a book title and author to create an entry!');
     } else {
-        myLibrary.push(book);
+        if ((myLibrary.some(e => (e.title == newBook.title) && (e.author == newBook.author)))) {
+            alert('It looks like this book is already in your library!');
+            newBookForm.reset();
+            return;
+        } else {
+            myLibrary.push(newBook);
+            displayLibrary();
+            displayStarRating();
+            newBookForm.reset();
+            newBookModal.style.display = "none";
+        }
     }
-};
-
-
+}
 
 // Display Library based on what's in myLibrary object
-const libraryDiv = document.querySelector('.library');
+let libraryDiv = document.querySelector('.library');
 function displayLibrary() {
+    removeAllChildNodes(libraryDiv);
     for (let i = 0; i < myLibrary.length; i++) {
         let div = document.createElement('div');
         div.setAttribute('class', 'book-card');
         div.innerHTML = `
-        <div class="book">
-            <div class="read-not-read ${myLibrary[i].read}">✓</div>
+        <div class="book" id="${i}">
+            <div class="read-not-read ${myLibrary[i].read} noselect">✓</div>
             <p class='book-title'>${myLibrary[i].title}</p>
             <p class='book-author'>${myLibrary[i].author}</p>
         </div>
@@ -37,24 +58,40 @@ function displayLibrary() {
         `;
         libraryDiv.appendChild(div);
     }
+    readNotReadButton = document.querySelectorAll('.read-not-read');
+    readNotReadButton.forEach((btn) => {
+        btn.addEventListener('click',readNotRead);
+    })
 }
 displayLibrary();
 
+function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+
 // Display Star Ratings option whenever a book is read
-const bottomOfCardDiv = document.querySelectorAll('.bottom-of-card');
+let bottomOfCardDiv = document.querySelectorAll('.bottom-of-card');
 function displayStarRating() {
+    let bottomOfCardDiv = document.querySelectorAll('.bottom-of-card');
     for (let i = 0; i < bottomOfCardDiv.length; i++) {
         let div = document.createElement('div');
+        let childNodes = bottomOfCardDiv[i].children;
         div.setAttribute('class', 'ratings noselect');
-        if (myLibrary[i].read === "read") {
-            div.innerHTML = `
+        div.innerHTML = `
             <i class="rating-star inactive-star noselect">★</i>
             <i class="rating-star inactive-star noselect">★</i>
             <i class="rating-star inactive-star noselect">★</i>
             <i class="rating-star inactive-star noselect">★</i>
             <i class="rating-star inactive-star noselect">★</i>
             `;
-        bottomOfCardDiv[i].insertBefore(div, bottomOfCardDiv[i].firstChild);
+
+        if (myLibrary[i].read === true && childNodes[0].classList.contains('ratings') === false) {
+            bottomOfCardDiv[i].insertBefore(div, bottomOfCardDiv[i].firstChild);
+        } 
+        if (myLibrary[i].read === false && childNodes[0].classList.contains('ratings') === true) {
+            bottomOfCardDiv[i].removeChild(childNodes[0]);
         }
     };
 };
@@ -74,5 +111,18 @@ closeButton.onclick = function() {
 window.onclick = function(event) {
     if (event.target == newBookModal) {
         newBookModal.style.display = "none";
+    }
+}
+
+// Read or not read button
+function readNotRead(e) {
+    if (e.target.classList.contains('true')) {
+        e.target.classList.remove('true');
+        myLibrary[e.target.parentNode.id].read = false;
+        displayStarRating();
+    } else {
+        e.target.classList.add('true');
+        myLibrary[e.target.parentNode.id].read = true;
+        displayStarRating();
     }
 }

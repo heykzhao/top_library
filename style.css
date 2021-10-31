@@ -251,7 +251,7 @@ input[type=checkbox] {
     width: 35px;
     font-size: 1.5em;
 }
-.read {
+.true {
     background-color: green;
     color: rgb(0, 49, 0);
 }
