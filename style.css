@@ -68,6 +68,7 @@ body {
     font-family: Satisfy, Arial, Helvetica, sans-serif;
 }
 .new-book-button {
+    text-align: center;
     cursor: pointer;
     border: none;
     background-color: rgb(250, 199, 199);
