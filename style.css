@@ -202,10 +202,16 @@ input[type=checkbox] {
     font-size: 30px;
     font-family: "Fugaz One", Arial, Helvetica, sans-serif;
     padding-bottom: 20px;
+    word-break: break-word;
+    hyphens: auto;
+    text-align: center;
 }
 .book-author {
     font-size: 20px;
     font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+    word-break: break-word;
+    hyphens: auto;
+    text-align: center;
 }
 .bottom-of-card {
     display: flex;
