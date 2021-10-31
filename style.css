@@ -165,7 +165,7 @@ input[type=checkbox] {
     justify-content: center;
 }
 .submit-button {
-    background-color: lavender;
+    background-color: rgb(193, 193, 253);
     border-style: none;
     font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
     font-size: 20px;
