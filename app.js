@@ -2,7 +2,6 @@ let sampleBook1 = new Book('Bad Blood', 'John Carreyrou', true, '4');
 let sampleBook2 = new Book('An Ugly Truth', 'Sheera Frankel, Cecilia Kang', true, '5');
 let sampleBook3 = new Book('The Every', 'Dave Eggers', false, '');
 
-
 // let myLibrary = [];
 let myLibrary = [sampleBook1, sampleBook2, sampleBook3];
 let readNotReadButton = document.querySelectorAll('.read-not-read');
@@ -37,6 +36,7 @@ function addBookFromSubmitButton(e) {
             myLibrary.push(newBook);
             displayLibrary();
             displayStarRating();
+            saveLocal()
             newBookForm.reset();
             newBookModal.style.display = "none";
         }
@@ -130,12 +130,14 @@ function readNotRead(e) {
         myLibrary[e.target.parentNode.id].rating = '';
         displayStarRating();
         starRatingUI();
+        saveLocal()
     } else {
         e.target.classList.add('true');
         myLibrary[e.target.parentNode.id].read = true;
         myLibrary[e.target.parentNode.id].rating = '';
         displayStarRating();
         starRatingUI();
+        saveLocal()
     }
 }
 
@@ -146,6 +148,7 @@ function deleteBook(e) {
     displayLibrary();
     displayStarRating();
     starRatingUI();
+    saveLocal()
 }
 
 // Star Rating
@@ -165,6 +168,7 @@ function rateBook(e) {
     }
     myLibrary[rateBookIndex].rating = starsGiven;
     starRatingUI();
+    saveLocal()
 }
 
 function starRatingUI() {
@@ -197,3 +201,26 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+function saveLocal() {
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+}
+
+function retrieveLocal() {
+    if (localStorage.getItem("myLibrary")) {
+        let retrievedStorage = JSON.parse(localStorage.getItem("myLibrary"));
+        myLibrary = retrievedStorage.map((book) => JSONToBook(book));
+    } else {
+    myLibrary = [sampleBook1, sampleBook2, sampleBook3];
+    }
+    displayLibrary();
+    displayStarRating();
+    starRatingUI();
+    saveLocal()
+}
+
+function JSONToBook(book) {
+    return new Book(book.title, book.author, book.read, book.rating);
+}
+
+retrieveLocal();
